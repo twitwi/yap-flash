@@ -5,12 +5,10 @@ import ReloadPrompt from './components/ReloadPrompt.vue'
 
 <template>
   <header>
-    <!--
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    -->
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/lib">Library</RouterLink>
+    </nav>
   </header>
 
   <RouterView />
