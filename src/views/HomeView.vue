@@ -46,7 +46,7 @@ function customText(outcome: Outcome): string {
     <button @click="state = 'flipped'">Flip</button>
   </div>
   <div class="card-back" v-else-if="state === 'flipped'">
-    {{ next.card.back }}
+    <pre>{{ next.card.back }}</pre>
     <br/>
     <button @click="state = 'idle'">(Flip Back)</button>
     <br/>
@@ -55,10 +55,13 @@ function customText(outcome: Outcome): string {
 </template>
 
 <style>
-.card-front {
-  background-color: #f0f0f0;
+.card-front, .card-back {
+  background-color: #e0f0e0;
   padding: 20px;
   border-radius: 8px;
   font-size: 1.5em
+}
+.card-back {
+  background-color: #d0d0f0;
 }
 </style>
