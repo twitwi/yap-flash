@@ -6,8 +6,10 @@ export const useLocalStore = defineStore(
   'local',
   () => {
     // like setup() in a component
-    //const userName = ref('bob')
-    return { }
+    const libNoSpoil = ref(true)
+    const libCompact = ref(false)
+    const manageTagsInSummary = ref(false)
+    return { libNoSpoil, libCompact, manageTagsInSummary }
   },
   {
     persist: { key: 'yap-flash:local' }, // persisted in localStorage

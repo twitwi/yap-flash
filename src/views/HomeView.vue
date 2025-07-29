@@ -2,6 +2,7 @@
 import { useLocalStore, useMainStore } from '@/stores/simple'
 import { Outcomes, type Outcome } from '@/typing'
 import { computed, ref } from 'vue'
+
 const local = useLocalStore()
 const main = useMainStore()
 

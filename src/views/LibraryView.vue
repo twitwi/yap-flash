@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import CardEditor from '@/components/CardEditor.vue'
+import TagTag from '@/components/TagTag.vue'
 import { useLocalStore, useMainStore } from '@/stores/simple'
-import type { Card, CardId, CardType } from '@/typing'
+import type { CardId, CardType } from '@/typing'
+import { promptAddTag, removeTag, sorted } from '@/utils'
+
 const local = useLocalStore()
 const main = useMainStore()
+
 
 function addCard() {
   const card = {
@@ -27,37 +32,52 @@ function promptDelete(cId: CardId) {
   }
 }
 
-function promptAddTag(c: Card) {
-  const tag = prompt('Add a new tag')
-  if (tag) {
-    if (!c.tags.includes(tag)) {
-      c.tags.push(tag)
-    }
-  }
-}
 </script>
 
 <template>
   <h3>Cards</h3>
-  <div v-for="c in main.cards" :key="c.id" class="card-edit">
-    <div class="id">{{ c.id }}</div>
-    <div class="front">
-      <textarea v-model="c.front"></textarea>
-    </div>
-    <div class="back">
-      <textarea v-model="c.back"></textarea>
-    </div>
-    <div class="tags">
-      Tags: 
-      <span v-for="t in [...c.tags].sort()" :key="t" class="tag">{{ t }} <button @click="c.tags = c.tags.filter(tt => tt !== t)">x</button></span>
-      <button @click="promptAddTag(c)">+</button>
-    </div>
-    <button @click="promptDelete(c.id)">Delete</button>
+  <div class="controls">
+    <label title="Prevent spoiler?"><input type="checkbox" v-model="local.libNoSpoil"> NoSpoil</label>
+    <label title="Foldable compact view?"><input type="checkbox" v-model="local.libCompact"> Compact</label>
+    <label title="Manage tags in summary?"><input type="checkbox" v-model="local.manageTagsInSummary"> xTags</label>
   </div>
+  <div :class="{ noSpoiler: local.libNoSpoil, displaynone: true }"></div>
+  <template v-if="local.libCompact">
+    <details v-for="c in main.cards" :key="c.id">
+      <summary>
+        {{ c.front }} <TagTag v-for="t in sorted(c.tags)" :key="t" :tag="t" :noDelete="!local.manageTagsInSummary" @delete="removeTag(c, t)" />
+        <button v-if="local.manageTagsInSummary" @click="promptAddTag(c)">+</button>
+      </summary>
+      <CardEditor :card="c" class="card-edit" @delete="promptDelete"></CardEditor>
+    </details>
+  </template>
+  <template v-else v-for="c in main.cards" :key="c.id">
+    <CardEditor :card="c" class="card-edit" @delete="promptDelete"></CardEditor>
+  </template>
   <button @click="addCard">+ Add Card</button>
 </template>
 
 <style>
+.controls label {
+  margin-left: 2rem;
+}
+.displaynone {
+  display: none;
+}
+.noSpoiler ~ * .back {
+  border: 1px dashed orange;
+  background: #eeeeee;
+
+  & textarea:not(:focus) {
+    opacity: 0;
+  }
+}
+.delete {
+  float: right;
+  position: relative;
+  top: -1rem;
+}
+
 .card-edit {
   border: 1px solid #ccc;
   margin: 1rem;
@@ -83,15 +103,6 @@ function promptAddTag(c: Card) {
   .back {
     left: 50%;
   }
-}
-.tag {
-  border: 1px solid #ccc;
-  border-radius: .4rem;
-  padding: 0 0 0 .4rem;
-  margin-right: .2rem;
-  background: #333;
-  color: white;
-  cursor: pointer;
 }
 
 </style>
