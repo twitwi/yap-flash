@@ -15,6 +15,7 @@
   "dependencies": {
     "@vite-pwa/assets-generator": "^1.0.0",
     "@vueuse/core": "^12.3.0",
+    "colorjs.io": "^0.5.2",
     "pinia": "^3.0.1",
     "pinia-plugin-persistedstate": "^4.2.0",
     "pinia-plugin-yjs": "^0.0.4",
@@ -37,6 +38,7 @@
     "eslint": "^9.22.0",
     "eslint-plugin-vue": "~10.0.0",
     "jiti": "^2.4.2",
+    "naive-ui": "^2.42.0",
     "npm-run-all2": "^7.0.2",
     "prettier": "3.5.3",
     "typescript": "~5.8.0",
