@@ -4,7 +4,7 @@ export function newCardId() {
   return (Date.now()+Math.random()).toString(36) as CardId
 }
 export function newBinaryId() {
-  return (Date.now()-(10*365*24*3600*1000)+Math.random()).toString(36)
+  return (Date.now()+Math.random()).toString(35).replace(/[.]/g, 'z')
 }
 
 export function promptAddTag(c: Card) {
@@ -57,4 +57,13 @@ export function getPersistentObjectURL(bblob: BinaryBlob) {
   const url = URL.createObjectURL(blob)
   persistentCache.set(bblob.b64, url)
   return url
+}
+
+export function simpleFourColorBBlob() {
+  return {
+    [newBinaryId()]: {
+      type: "image/png",
+      b64: "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAALElEQVR4nGLRM/NiQAKz7zoic5kY8AKaSrOwJ0oj87/wCtPNbgLSgAAAAP//wIoEF3npdu0AAAAASUVORK5CYII=",
+    }
+  }
 }

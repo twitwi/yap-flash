@@ -3,7 +3,7 @@ import CardEditor from '@/components/CardEditor.vue'
 import TagTag from '@/components/TagTag.vue'
 import { useLocalStore, useMainStore } from '@/stores/simple'
 import type { CardId, CardType } from '@/typing'
-import { bytesToBase64, getPersistentObjectURL, newBinaryId, newCardId, promptAddTag, removeTag, sorted } from '@/utils'
+import { getPersistentObjectURL, newCardId, promptAddTag, removeTag, simpleFourColorBBlob, sorted } from '@/utils'
 
 const local = useLocalStore()
 const main = useMainStore()
@@ -31,6 +31,15 @@ function promptDelete(cId: CardId) {
     main.deletedCards.push(c)
   }
 }
+
+function testAddBinary() {
+
+}
+
+function resetBinaries() {
+  main.binaries = simpleFourColorBBlob()
+}
+
 
 </script>
 
@@ -62,7 +71,7 @@ function promptDelete(cId: CardId) {
   </div>
   <div class="binaries">
     <div v-for="v,k in main.binaries" :key="k">
-      <code>bin://{{ k }}</code>
+      <code>img://{{ k }}</code>
       <img :src="v && getPersistentObjectURL(v)" />
     </div>
   </div>
