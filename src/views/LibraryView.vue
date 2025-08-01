@@ -3,7 +3,7 @@ import CardEditor from '@/components/CardEditor.vue'
 import TagTag from '@/components/TagTag.vue'
 import { useLocalStore, useMainStore } from '@/stores/simple'
 import type { CardId, CardType } from '@/typing'
-import { promptAddTag, removeTag, sorted } from '@/utils'
+import { bytesToBase64, getPersistentObjectURL, newBinaryId, newCardId, promptAddTag, removeTag, sorted } from '@/utils'
 
 const local = useLocalStore()
 const main = useMainStore()
@@ -11,7 +11,7 @@ const main = useMainStore()
 
 function addCard() {
   const card = {
-    id: (Date.now()+Math.random()).toString(36),
+    id: newCardId(),
     type: 'basic' as CardType,
     front: 'Front',
     back: 'Back',
@@ -55,6 +55,20 @@ function promptDelete(cId: CardId) {
     <CardEditor :card="c" class="card-edit" @delete="promptDelete"></CardEditor>
   </template>
   <button @click="addCard">+ Add Card</button>
+  <h3>Binaries ({{ Object.keys(main.binaries).length }})</h3>
+  <div class="binary-controls">
+    <button @click="testAddBinary()">test add</button>
+    <button @click="resetBinaries()">Reset to empty</button>
+  </div>
+  <div class="binaries">
+    <div v-for="v,k in main.binaries" :key="k">
+      <code>bin://{{ k }}</code>
+      <img :src="v && getPersistentObjectURL(v)" />
+    </div>
+  </div>
+  <div class="binary-use">
+
+  </div>
 </template>
 
 <style>

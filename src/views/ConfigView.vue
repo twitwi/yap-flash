@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import EditLocalStorageConfig from '@/components/EditLocalStorageConfig.vue';
 
+import { useMainStore } from '@/stores/simple'; // to ensure preloading for other tabs...
+useMainStore()
+
 function promptReloadPage() {
   if (confirm('Are you sure you want to reload the page?')) {
     location.reload()

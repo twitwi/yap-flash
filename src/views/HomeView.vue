@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import MDRender from '@/components/MDRender.vue'
 import { useLocalStore, useMainStore } from '@/stores/simple'
 import { Outcomes, type Outcome } from '@/typing'
 import { computed, ref } from 'vue'
@@ -7,7 +8,6 @@ const local = useLocalStore()
 const main = useMainStore()
 
 const next = computed(() => {
-  console.log(main.views)
   const i = Math.floor(Math.random() * main.cards.length)
   return {
     card: main.cards[i],
@@ -40,17 +40,17 @@ function customText(outcome: Outcome): string {
 </script>
 
 <template>
-  <div class="card-front" v-if="state === 'idle'">
+  <div class="card-front" v-if="next.card && state === 'idle'">
     <button @click="state = 'flipped'">Flip</button>
     <button @click="registerFeedback('skip')">Skip</button>
-    <pre>{{ next.card.front }}</pre>
+    <MDRender :content="next.card.front"></MDRender>
     <br/>
     <button @click="state = 'flipped'">Flip</button>
     <button @click="registerFeedback('skip')">Skip</button>
   </div>
-  <div class="card-back" v-else-if="state === 'flipped'">
+  <div class="card-back" v-else-if="next.card && state === 'flipped'">
     <button @click="state = 'idle'">(Flip Back)</button>
-    <pre>{{ next.card.back }}</pre>
+    <MDRender :content="next.card.back"></MDRender>
     <br/>
     <button v-for="feedback in Outcomes" :key="feedback" @click="registerFeedback(feedback)">{{ customText(feedback) }}</button>
   </div>

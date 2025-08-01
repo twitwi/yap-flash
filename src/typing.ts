@@ -27,3 +27,7 @@ export type View = {
   comment?: string
 }
 
+export type BinaryBlob = {
+  type: string
+  b64: string
+}

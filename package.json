@@ -16,6 +16,7 @@
     "@vite-pwa/assets-generator": "^1.0.0",
     "@vueuse/core": "^12.3.0",
     "colorjs.io": "^0.5.2",
+    "markdown-it": "^14.1.0",
     "pinia": "^3.0.1",
     "pinia-plugin-persistedstate": "^4.2.0",
     "pinia-plugin-yjs": "^0.0.4",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vitejs/plugin-vue-jsx": "^4.1.2",
