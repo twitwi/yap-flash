@@ -4,6 +4,7 @@ import TagTag from '@/components/TagTag.vue'
 import { useLocalStore, useMainStore } from '@/stores/simple'
 import type { CardId, CardType } from '@/typing'
 import { getPersistentObjectURL, newCardId, promptAddTag, removeTag, simpleFourColorBBlob, sorted } from '@/utils'
+import { NButton } from 'naive-ui'
 
 const local = useLocalStore()
 const main = useMainStore()
@@ -32,14 +33,9 @@ function promptDelete(cId: CardId) {
   }
 }
 
-function testAddBinary() {
-
-}
-
 function resetBinaries() {
   main.binaries = simpleFourColorBBlob()
 }
-
 
 </script>
 
@@ -49,6 +45,7 @@ function resetBinaries() {
     <label title="Prevent spoiler?"><input type="checkbox" v-model="local.libNoSpoil"> NoSpoil</label>
     <label title="Foldable compact view?"><input type="checkbox" v-model="local.libCompact"> Compact</label>
     <label title="Manage tags in summary?"><input type="checkbox" v-model="local.manageTagsInSummary"> xTags</label>
+    <label title="Bigger textareas?"><input type="checkbox" v-model="local.adaptiveTextAreas"> ⇕ adapt</label>
   </div>
   <div :class="{ noSpoiler: local.libNoSpoil, displaynone: true }"></div>
   <template v-if="local.libCompact">
@@ -57,17 +54,17 @@ function resetBinaries() {
         {{ c.front }} <TagTag v-for="t in sorted(c.tags)" :key="t" :tag="t" :noDelete="!local.manageTagsInSummary" @delete="removeTag(c, t)" />
         <button v-if="local.manageTagsInSummary" @click="promptAddTag(c)">+</button>
       </summary>
-      <CardEditor :card="c" class="card-edit" @delete="promptDelete"></CardEditor>
+      <CardEditor :card="c" class="card-edit" @delete="promptDelete" :adaptive="local.adaptiveTextAreas"></CardEditor>
     </details>
   </template>
   <template v-else v-for="c in main.cards" :key="c.id">
-    <CardEditor :card="c" class="card-edit" @delete="promptDelete"></CardEditor>
+    <CardEditor :card="c" class="card-edit" @delete="promptDelete" :adaptive="local.adaptiveTextAreas"></CardEditor>
   </template>
   <button @click="addCard">+ Add Card</button>
   <h3>Binaries ({{ Object.keys(main.binaries).length }})</h3>
   <div class="binary-controls">
-    <button @click="testAddBinary()">test add</button>
     <button @click="resetBinaries()">Reset to empty</button>
+    <NButton @click="$router.push('import-image')">Add</NButton>
   </div>
   <div class="binaries">
     <div v-for="v,k in main.binaries" :key="k">

@@ -11,22 +11,39 @@ const theme = getTheme(color)
 
 <template>
   <NConfigProvider :theme-overrides="theme">
-    <header>
-      <nav>
-        <NButtonGroup class="header">
-          <NButton v-bind="bindRouterLink('home')">Home</NButton>
-          <NButton v-bind="bindRouterLink('library')">Library</NButton>
-          <NButton v-bind="bindRouterLink('config')" style="flex: 0">cfg</NButton>
-        </NButtonGroup>
-      </nav>
-    </header>
+    <div id="root">
+      <header>
+        <nav>
+          <NButtonGroup class="header">
+            <NButton v-bind="bindRouterLink('home')">Home</NButton>
+            <NButton v-bind="bindRouterLink('library')">Library</NButton>
+            <NButton v-bind="bindRouterLink('config')" style="flex: 0">cfg</NButton>
+          </NButtonGroup>
+        </nav>
+      </header>
 
-    <RouterView />
+      <div class="router-view">
+        <RouterView />
+      </div>
+    </div>
   </NConfigProvider>
   <ReloadPrompt />
 </template>
 
 <style>
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  > .header {
+    flex: 0;
+  }
+  > .router-view {
+    flex: 1;
+    overflow-y: scroll;
+  }
+}
 .header {
   width: 100%;
   display: flex;
