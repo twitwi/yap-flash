@@ -5,11 +5,10 @@ import type { BinaryBlob, Card, View } from '@/typing'
 export const useLocalStore = defineStore(
   'local',
   () => {
-    // like setup() in a component
-    const libNoSpoil = ref(true)
-    const libCompact = ref(false)
-    const manageTagsInSummary = ref(false)
-    return { libNoSpoil, libCompact, manageTagsInSummary }
+    return {
+      libNoSpoil: ref(true),
+      libCompact: ref(false),
+      manageTagsInSummary: ref(false),
   },
   {
     persist: { key: 'yap-flash:local' }, // persisted in localStorage
