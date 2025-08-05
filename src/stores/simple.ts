@@ -9,6 +9,8 @@ export const useLocalStore = defineStore(
       libNoSpoil: ref(true),
       libCompact: ref(false),
       manageTagsInSummary: ref(false),
+      adaptiveTextAreas: ref(false),
+    }
   },
   {
     persist: { key: 'yap-flash:local' }, // persisted in localStorage

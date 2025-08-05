@@ -6,6 +6,7 @@ import { promptAddTag, removeTag, sorted } from '@/utils';
 
 const props = defineProps<{
     card: Card
+    adaptive?: boolean
 }>()
 const card = computed(() => props.card) // kind of hide the mutation, it is intentional that this Editor mutates the props directly.
 
@@ -18,10 +19,10 @@ const emit = defineEmits<{
   <div class="card-edit">
     <div class="id">{{ card.id }}</div>
     <div class="front">
-      <textarea v-model="card.front"></textarea>
+      <textarea v-model="card.front" :rows="adaptive ? 2 + card.front.replace(/[^\n]/g, '').length : 2"></textarea>
     </div>
     <div class="back">
-      <textarea v-model="card.back"></textarea>
+      <textarea v-model="card.back" :rows="adaptive ? 2 + card.back.replace(/[^\n]/g, '').length : 2"></textarea>
     </div>
     <div class="tags">
       Tags:
@@ -31,3 +32,4 @@ const emit = defineEmits<{
     <button class="delete" @click="emit('delete', card.id)">Delete</button>
   </div>
 </template>
+
