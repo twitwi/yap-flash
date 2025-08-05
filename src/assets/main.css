@@ -1,1 +1,17 @@
 @import './base.css';
+
+
+/* .card > :is(.card-front, .card-back) > .card-content */
+
+
+
+/* OK TO BE USED BY CARDS */
+
+.card-content {
+  /*position: relative;*/
+
+  img.wfit {
+    display: block;
+    width: 100%;
+  }
+}

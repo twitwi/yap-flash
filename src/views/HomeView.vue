@@ -43,14 +43,18 @@ function customText(outcome: Outcome): string {
   <div class="card-front" v-if="next.card && state === 'idle'">
     <button @click="state = 'flipped'">Flip</button>
     <button @click="registerFeedback('skip')">Skip</button>
-    <MDRender :content="next.card.front"></MDRender>
+    <div class="card-content">
+      <MDRender :content="next.card.front"></MDRender>
+    </div>
     <br/>
     <button @click="state = 'flipped'">Flip</button>
     <button @click="registerFeedback('skip')">Skip</button>
   </div>
   <div class="card-back" v-else-if="next.card && state === 'flipped'">
     <button @click="state = 'idle'">(Flip Back)</button>
-    <MDRender :content="next.card.back"></MDRender>
+    <div class="card-content">
+      <MDRender :content="next.card.back"></MDRender>
+    </div>
     <br/>
     <button v-for="feedback in Outcomes" :key="feedback" @click="registerFeedback(feedback)">{{ customText(feedback) }}</button>
   </div>
