@@ -1,10 +1,10 @@
-import type { BinaryBlob, Card, CardId } from "./typing"
+import type { BinaryBlob, BinaryId, Card, CardId } from "./typing"
 
 export function newCardId() {
   return (Date.now()+Math.random()).toString(36) as CardId
 }
 export function newBinaryId() {
-  return (Date.now()+Math.random()).toString(35).replace(/[.]/g, 'z')
+  return (Date.now()+Math.random()).toString(35).replace(/[.]/g, 'z') as BinaryId
 }
 
 export function promptAddTag(c: Card) {
@@ -61,9 +61,8 @@ export function getPersistentObjectURL(bblob: BinaryBlob) {
 
 export function simpleFourColorBBlob() {
   return {
-    [newBinaryId()]: {
+      id: newBinaryId(),
       type: "image/png",
       b64: "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAALElEQVR4nGLRM/NiQAKz7zoic5kY8AKaSrOwJ0oj87/wCtPNbgLSgAAAAP//wIoEF3npdu0AAAAASUVORK5CYII=",
-    }
-  }
+  } as BinaryBlob
 }

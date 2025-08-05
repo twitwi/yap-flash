@@ -21,11 +21,13 @@ export const useMainStore = defineStore(
   'main',
   () => {
     // like setup() in a component
-    const views = ref([] as View[])
-    const cards = ref([] as Card[])
-    const binaries = ref({} as Record<string, BinaryBlob>)
-    const deletedCards = ref([] as Card[])
-    return { views, cards, deletedCards, binaries }
+    return {
+      views: ref([] as View[]),
+      cards: ref([] as Card[]),
+      deletedCards: ref([] as Card[]),
+      binaries: ref([] as BinaryBlob[]),
+      deletedBinaries: ref([] as BinaryBlob[]),
+    }
   },
   {
     sharing: true, // shared through yjs (+ local IDB)

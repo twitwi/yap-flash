@@ -34,7 +34,19 @@ function promptDelete(cId: CardId) {
 }
 
 function resetBinaries() {
-  main.binaries = simpleFourColorBBlob()
+  main.binaries.splice(0, main.binaries.length, simpleFourColorBBlob())
+}
+
+function promptDeleteBinary(bId: string) {
+  const ind = main.binaries.findIndex(bin => bin.id === bId)
+  if (ind === -1) {
+    alert('Binary not found')
+    return
+  }
+  if (confirm('Really delete Binary?\n\nid: '+bId)) {
+    const [b] =main.binaries.splice(ind, 1)
+    main.deletedBinaries.push(b)
+  }
 }
 
 </script>
@@ -67,9 +79,10 @@ function resetBinaries() {
     <NButton @click="$router.push('import-image')">Add</NButton>
   </div>
   <div class="binaries">
-    <div v-for="v,k in main.binaries" :key="k">
-      <code>img://{{ k }}</code>
-      <img :src="v && getPersistentObjectURL(v)" />
+    <div v-for="b in main.binaries" :key="b.id">
+      <code>img://{{ b.id }}</code>
+      <img :src="getPersistentObjectURL(b)" />
+      <NButton type="error" @click="promptDeleteBinary(b.id)">Delete</NButton>
     </div>
   </div>
   <div class="binary-use">

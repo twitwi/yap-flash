@@ -27,7 +27,9 @@ export type View = {
   comment?: string
 }
 
+export type BinaryId = string
 export type BinaryBlob = {
+  id: BinaryId
   type: string
   b64: string
 }

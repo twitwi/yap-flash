@@ -37,7 +37,6 @@ const result = reactive({
 async function doCrop(redo: boolean = false) {
   if (!redo) {
     if (!cropper) return
-    result.status = '…'
     const base64 = cropper.getDataURL()
     const blob: Blob | null = await cropper.getBlob()
     //lastBlob[0] = blob
@@ -57,7 +56,7 @@ function doAdd() {
   reader.onload = (e) => {
     const uint8array = new Uint8Array(e.target!.result as ArrayBuffer)
     const id = newBinaryId()
-    main.binaries[id] = { type: blob.type, b64: bytesToBase64(uint8array) }
+    main.binaries.push({ id, type: blob.type, b64: bytesToBase64(uint8array) })
     result.binaryId = id
   }
   reader.readAsArrayBuffer(blob)
