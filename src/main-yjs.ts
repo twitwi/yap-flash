@@ -73,14 +73,16 @@ export function setupYjs(piniaUse: Pinia, { websocket = true, indexeddb = true, 
   const ydoc = new Y.Doc()
   const [server, docname, token] = getOrAskConfig()
   const idbkey = `yjs-${docname}` // idb key, can be different
+  let ws = undefined
   if (websocket) {
-    new WebsocketProvider(server.includes('://') ? server : `wss://${server}`, `${docname}?t=${token}`, ydoc)
+    ws = new WebsocketProvider(server.includes('://') ? server : `wss://${server}`, `${docname}?t=${token}`, ydoc)
   }
+  let idb = undefined
   if (indexeddb) {
-    new IndexeddbPersistence(idbkey, ydoc)
+    idb = new IndexeddbPersistence(idbkey, ydoc)
   }
   if (pinia) {
     piniaUse.use(createPiniaYJSPlugin({ doc: ydoc }))
   }
-  return ydoc
+  return { ydoc, server, docname, token, idbkey, ws, idb }
 }
