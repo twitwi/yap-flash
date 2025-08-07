@@ -42,26 +42,27 @@ function customText(outcome: Outcome): string {
 
 <template>
   <div class="card-front" v-if="next.card && state === 'idle'">
-    <NSpace style="width: 100;" justify="space-around">
-      <NButton @click="registerFeedback('skip')">Skip</NButton>
+    <NSpace style="width: 100% ;" justify="space-between">
       <NButton @click="state = 'flipped'" type="primary">Flip</NButton>
+      <NButton @click="registerFeedback('skip')">Skip</NButton>
     </NSpace>
     <div class="card-content">
       <MDRender :content="next.card.front"></MDRender>
     </div>
-    <br/>
-    <NSpace style="width: 100;" justify="space-around">
-      <NButton @click="state = 'flipped'" type="primary">Flip</NButton>
+    <NSpace justify="space-around">
       <NButton @click="registerFeedback('skip')">Skip</NButton>
+      <NButton @click="state = 'flipped'" type="primary">Flip</NButton>
     </NSpace>
   </div>
   <div class="card-back" v-else-if="next.card && state === 'flipped'">
-    <button @click="state = 'idle'">(Flip Back)</button>
+    <NSpace style="width: 100% ;" justify="space-between">
+      <NButton @click="state = 'idle'">Flip back</NButton>
+      <NButton @click="state = 'idle'">Flip back</NButton>
+    </NSpace>
     <div class="card-content">
       <MDRender :content="next.card.back"></MDRender>
     </div>
-    <br/>
-    <NSpace>
+    <NSpace justify="space-around">
       <NButton v-for="feedback in Outcomes" :key="feedback" type="info" @click="registerFeedback(feedback)">{{ customText(feedback) }}</NButton>
     </NSpace>
   </div>
@@ -69,12 +70,26 @@ function customText(outcome: Outcome): string {
 
 <style>
 .card-front, .card-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
   background-color: #e0f0e0;
   padding: 20px;
   border-radius: 8px;
-  font-size: 1.5em
+  font-size: 1.5em;
+  .card-content {
+    border: 3px solid darkgreen;
+    background: #eeffee;
+    border-radius: 1em;
+    padding: 2em;
+  }
 }
 .card-back {
   background-color: #d0d0f0;
+  .card-content {
+    border-color: darkblue;
+    background: #eeeeff;
+  }
 }
 </style>

@@ -32,6 +32,6 @@ watch(() => props.content, updateContent)
 </script>
 
 <template>
-  <div v-html="htmlContent"></div>
+  <div class="md" v-html="htmlContent"></div>
 </template>
 
