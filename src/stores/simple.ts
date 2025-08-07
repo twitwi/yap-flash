@@ -10,6 +10,9 @@ export const useLocalStore = defineStore(
       libCompact: ref(false),
       manageTagsInSummary: ref(false),
       adaptiveTextAreas: ref(false),
+      imageType: ref('webp'),
+      imageQuality: ref(80),
+      bigPreview: ref(false),
     }
   },
   {

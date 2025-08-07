@@ -66,3 +66,11 @@ export function simpleFourColorBBlob() {
       b64: "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAALElEQVR4nGLRM/NiQAKz7zoic5kY8AKaSrOwJ0oj87/wCtPNbgLSgAAAAP//wIoEF3npdu0AAAAASUVORK5CYII=",
   } as BinaryBlob
 }
+
+export async function copyContent(element: HTMLElement | null) {
+  if (element?.textContent) {
+    await navigator.clipboard.writeText(element.textContent)
+    element.classList.add('copied')
+    setTimeout(() => element.classList.remove('copied'), 500)
+  }
+}

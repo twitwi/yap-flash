@@ -3,7 +3,7 @@ import CardEditor from '@/components/CardEditor.vue'
 import TagTag from '@/components/TagTag.vue'
 import { useLocalStore, useMainStore } from '@/stores/simple'
 import type { CardId, CardType } from '@/typing'
-import { getPersistentObjectURL, newCardId, promptAddTag, removeTag, simpleFourColorBBlob, sorted } from '@/utils'
+import { copyContent, getPersistentObjectURL, newCardId, promptAddTag, removeTag, simpleFourColorBBlob, sorted } from '@/utils'
 import { NButton } from 'naive-ui'
 
 const local = useLocalStore()
@@ -46,14 +46,6 @@ function promptDeleteBinary(bId: string) {
   if (confirm('Really delete Binary?\n\nid: '+bId)) {
     const [b] =main.binaries.splice(ind, 1)
     main.deletedBinaries.push(b)
-  }
-}
-
-async function copyContent(element: HTMLElement | null) {
-  if (element?.textContent) {
-    await navigator.clipboard.writeText(element.textContent)
-    element.classList.add('copied')
-    setTimeout(() => element.classList.remove('copied'), 500)
   }
 }
 
