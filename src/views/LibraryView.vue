@@ -49,6 +49,14 @@ function promptDeleteBinary(bId: string) {
   }
 }
 
+async function copyContent(element: HTMLElement | null) {
+  if (element?.textContent) {
+    await navigator.clipboard.writeText(element.textContent)
+    element.classList.add('copied')
+    setTimeout(() => element.classList.remove('copied'), 500)
+  }
+}
+
 </script>
 
 <template>
@@ -80,8 +88,9 @@ function promptDeleteBinary(bId: string) {
   </div>
   <div class="binaries">
     <div v-for="b in main.binaries" :key="b.id">
-      <code>img://{{ b.id }}</code>
-      <img :src="getPersistentObjectURL(b)" />
+      <code @click="ev => copyContent(ev.target as HTMLElement)">img://{{ b.id }}</code>
+      <span> </span>
+      <img :src="getPersistentObjectURL(b)" @click="ev => copyContent((ev.target as HTMLElement)!.parentElement!.querySelector('code'))" />
       <NButton type="error" @click="promptDeleteBinary(b.id)">Delete</NButton>
     </div>
   </div>
@@ -91,6 +100,9 @@ function promptDeleteBinary(bId: string) {
 </template>
 
 <style>
+.copied {
+  background: #BFB;
+}
 .controls label {
   margin-left: 2rem;
 }
