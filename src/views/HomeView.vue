@@ -2,6 +2,7 @@
 import MDRender from '@/components/MDRender.vue'
 import { useLocalStore, useMainStore } from '@/stores/simple'
 import { Outcomes, type Outcome } from '@/typing'
+import { NButton, NButtonGroup, NSpace } from 'naive-ui'
 import { computed, ref } from 'vue'
 
 const local = useLocalStore()
@@ -41,14 +42,18 @@ function customText(outcome: Outcome): string {
 
 <template>
   <div class="card-front" v-if="next.card && state === 'idle'">
-    <button @click="state = 'flipped'">Flip</button>
-    <button @click="registerFeedback('skip')">Skip</button>
+    <NSpace style="width: 100;" justify="space-around">
+      <NButton @click="registerFeedback('skip')">Skip</NButton>
+      <NButton @click="state = 'flipped'" type="primary">Flip</NButton>
+    </NSpace>
     <div class="card-content">
       <MDRender :content="next.card.front"></MDRender>
     </div>
     <br/>
-    <button @click="state = 'flipped'">Flip</button>
-    <button @click="registerFeedback('skip')">Skip</button>
+    <NSpace style="width: 100;" justify="space-around">
+      <NButton @click="state = 'flipped'" type="primary">Flip</NButton>
+      <NButton @click="registerFeedback('skip')">Skip</NButton>
+    </NSpace>
   </div>
   <div class="card-back" v-else-if="next.card && state === 'flipped'">
     <button @click="state = 'idle'">(Flip Back)</button>
@@ -56,7 +61,9 @@ function customText(outcome: Outcome): string {
       <MDRender :content="next.card.back"></MDRender>
     </div>
     <br/>
-    <button v-for="feedback in Outcomes" :key="feedback" @click="registerFeedback(feedback)">{{ customText(feedback) }}</button>
+    <NSpace>
+      <NButton v-for="feedback in Outcomes" :key="feedback" type="info" @click="registerFeedback(feedback)">{{ customText(feedback) }}</NButton>
+    </NSpace>
   </div>
 </template>
 
