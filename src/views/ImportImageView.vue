@@ -95,9 +95,9 @@ function doAdd() {
         <NInput placeholder="... paste here or click below" :value="''" autofocus/><br/>
         <NButton @click="pasteImage">from clipboard</NButton>
       </NCard>
-      <NCard v-if="showCropper" title="Select below then">
+      <!--NCard v-if="showCropper" title="Select below then">
         <NButton type="primary" @click="doCrop()">Crop!</NButton>
-      </NCard>
+      </NCard-->
       <NCard v-if="result.dataURL" style="height: 200px;">
         <div :style="'background-image: url(' + result.dataURL + ')'" class="crop"></div>
       </NCard>
@@ -125,6 +125,8 @@ function doAdd() {
           viewMode: 1,
           dragMode: 'crop',
         }"
+        @cropend="doCrop()"
+        @zoom="doCrop()"
       ></VuePictureCropper>
     </div>
   </div>

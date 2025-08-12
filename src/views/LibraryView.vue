@@ -44,7 +44,7 @@ function promptDeleteBinary(bId: string) {
     return
   }
   if (confirm('Really delete Binary?\n\nid: '+bId)) {
-    const [b] =main.binaries.splice(ind, 1)
+    const [b] = main.binaries.splice(ind, 1)
     main.deletedBinaries.push(b)
   }
 }
