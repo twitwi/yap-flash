@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import MDRender from '@/components/MDRender.vue'
-import { useLocalStore, useMainStore } from '@/stores/simple'
+import { useMainStore } from '@/stores/stores'
 import { Outcomes, type Outcome, type CardId, type Card } from '@/typing'
 import { NButton, NSpace } from 'naive-ui'
 import { computed, ref } from 'vue'
 
-const local = useLocalStore()
+//const local = useLocalStore()
 const main = useMainStore()
 
 // could move to the store
