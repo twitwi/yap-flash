@@ -8,10 +8,12 @@ export function newBinaryId() {
 }
 
 export function promptAddTag(c: Card) {
-  const tag = prompt('Add a new tag')
-  if (tag) {
-    if (!c.tags.includes(tag)) {
-      c.tags.push(tag)
+  const tags = prompt('Add tags')
+  if (tags) {
+    for (const tag of tags.trim().split(' ')) {
+      if (!c.tags.includes(tag)) {
+        c.tags.push(tag)
+      }
     }
   }
 }
