@@ -9,7 +9,7 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   '@vueuse/core':
-    specifier: ^12.3.0
+    specifier: ^12.8.2
     version: 12.8.2(typescript@5.8.3)
   colorjs.io:
     specifier: ^0.5.2
@@ -23,15 +23,15 @@ dependencies:
   pinia-plugin-persistedstate:
     specifier: ^4.2.0
     version: 4.4.1(pinia@3.0.3)
-  pinia-plugin-yjs:
-    specifier: ^0.0.4
-    version: 0.0.4(pinia@3.0.3)(vue@3.5.18)(yjs@13.6.27)
   vite-plugin-pwa:
     specifier: ^1.0.0
     version: 1.0.2(@vite-pwa/assets-generator@1.0.0)(vite@6.3.5)(workbox-build@7.3.0)(workbox-window@7.3.0)
   vue:
     specifier: ^3.5.13
     version: 3.5.18(typescript@5.8.3)
+  vue-picture-cropper:
+    specifier: ^0.7.0
+    version: 0.7.0(vue@3.5.18)
   vue-router:
     specifier: ^4.5.0
     version: 4.5.1(vue@3.5.18)
@@ -88,6 +88,9 @@ devDependencies:
   npm-run-all2:
     specifier: ^7.0.2
     version: 7.0.2
+  pinia-plugin-yjs:
+    specifier: github:twitwi/pinia-plugin-yjs
+    version: github.com/twitwi/pinia-plugin-yjs/6a094fe765513e862e82726956d7e368f0f25946(pinia@3.0.3)(vue@3.5.18)(yjs@13.6.27)
   prettier:
     specifier: 3.5.3
     version: 3.5.3
@@ -1232,6 +1235,12 @@ packages:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
+
+  /@bassist/utils@0.4.0:
+    resolution: {integrity: sha512-aoFTl0jUjm8/tDZodP41wnEkvB+C5O9NFCuYN/ztL6jSUSsuBkXq90/1ifBm1XhV/zySHgLYlU1+tgo3XtQ+nA==}
+    dependencies:
+      '@withtypes/mime': 0.1.2
+    dev: false
 
   /@canvas/image-data@1.0.0:
     resolution: {integrity: sha512-BxOqI5LgsIQP1odU5KMwV9yoijleOPzHL18/YvNqF9KFSGF2K/DLlYAbDQsWqd/1nbaFuSkYD/191dpMtNh4vw==}
@@ -2422,7 +2431,6 @@ packages:
     resolution: {integrity: sha512-lwOnNBH2e7x1fIIbVT7yF5D+YWhqELm55/4ZKf45R9T8r9dE2AIOy8HKjfqzGsoTHFbWbr337O4E0A0QADnjBg==}
     dependencies:
       '@vue/devtools-kit': 7.7.7
-    dev: false
 
   /@vue/devtools-core@7.7.7(vite@6.3.5)(vue@3.5.18):
     resolution: {integrity: sha512-9z9TLbfC+AjAi1PQyWX+OErjIaJmdFlbDHcD+cAMYKY6Bh5VlsAtCeGyRMrXwIlMEQPukvnWt3gZBLwTAIMKzQ==}
@@ -2578,6 +2586,12 @@ packages:
       vue: 3.5.18(typescript@5.8.3)
     transitivePeerDependencies:
       - typescript
+    dev: false
+
+  /@withtypes/mime@0.1.2:
+    resolution: {integrity: sha512-PB9BfZGzwblUONJY0LiOwsHCA6uV3DIPj/w9ReekdHxPOl0VdUFgI5s4avKycuuq9Gf5Nz2ZPA2O36GAUzlMPA==}
+    dependencies:
+      mime: 3.0.0
     dev: false
 
   /acorn-jsx@5.3.2(acorn@8.15.0):
@@ -2868,6 +2882,10 @@ packages:
     resolution: {integrity: sha512-JepmAj2zfl6ogy34qfWtcE7nHKAJnKsQFRn++scjVS2bZFllwptzw61BZcZFYBPpUznLfAvh0LGhxKppk04ClA==}
     dependencies:
       browserslist: 4.25.1
+    dev: false
+
+  /cropperjs@1.6.2:
+    resolution: {integrity: sha512-nhymn9GdnV3CqiEHJVai54TULFAE3VshJTXSqSJKa8yXAKyBKDWdhHarnlIPrshJ0WMFTGuFvG02YjLXfPiuOA==}
     dev: false
 
   /cross-spawn@7.0.6:
@@ -3999,7 +4017,6 @@ packages:
 
   /isomorphic.js@0.2.5:
     resolution: {integrity: sha512-PIeMbHqMt4DnUP3MA/Flc0HElYjMXArsw1qwJZcm9sqR8mq3l8NYizFMty0pWwE/tzIGH3EKK5+jes5mAr85yw==}
-    dev: false
 
   /jake@10.9.2:
     resolution: {integrity: sha512-2P4SQ0HrLQ+fw6llpLnOaGAvN2Zu6778SJMrCUwns4fOoG9ayrTiZk3VV8sCPkVZF8ab0zksVpS8FDY5pRCNBA==}
@@ -4108,7 +4125,6 @@ packages:
     hasBin: true
     dependencies:
       isomorphic.js: 0.2.5
-    dev: false
 
   /linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
@@ -4196,6 +4212,12 @@ packages:
       braces: 3.0.3
       picomatch: 2.3.1
     dev: true
+
+  /mime@3.0.0:
+    resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    dev: false
 
   /minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -4467,18 +4489,6 @@ packages:
       pinia: 3.0.3(typescript@5.8.3)(vue@3.5.18)
     dev: false
 
-  /pinia-plugin-yjs@0.0.4(pinia@3.0.3)(vue@3.5.18)(yjs@13.6.27):
-    resolution: {integrity: sha512-P+aUbX2mRhWymH2Tv0irTOz/W9vp4cv04rYqpaCzd6xPy4J9m/f7U+pLjCYM/RUmEONTZY5mS11q+PLBj6pgsw==}
-    peerDependencies:
-      pinia: ^2.0.0
-      vue: ^3.0.0
-      yjs: ^13.0.0
-    dependencies:
-      pinia: 3.0.3(typescript@5.8.3)(vue@3.5.18)
-      vue: 3.5.18(typescript@5.8.3)
-      yjs: 13.6.27
-    dev: false
-
   /pinia@3.0.3(typescript@5.8.3)(vue@3.5.18):
     resolution: {integrity: sha512-ttXO/InUULUXkMHpTdp9Fj4hLpD/2AoJdmAbAeW2yu1iy1k+pkFekQXw5VpC0/5p51IOR/jDaDRfRWRnMMsGOA==}
     peerDependencies:
@@ -4491,7 +4501,6 @@ packages:
       '@vue/devtools-api': 7.7.7
       typescript: 5.8.3
       vue: 3.5.18(typescript@5.8.3)
-    dev: false
 
   /possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
@@ -5485,6 +5494,16 @@ packages:
       - supports-color
     dev: true
 
+  /vue-picture-cropper@0.7.0(vue@3.5.18):
+    resolution: {integrity: sha512-NF7+Dgso6d0GB16E5d/BbrcTIHm1VWz8dS3IjLhoBl+ZeC+yDA46CyJphQuO32SisaPmrKHN8VbiE2LgAfhnkQ==}
+    peerDependencies:
+      vue: '>=3.2.13'
+    dependencies:
+      '@bassist/utils': 0.4.0
+      cropperjs: 1.6.2
+      vue: 3.5.18(typescript@5.8.3)
+    dev: false
+
   /vue-router@4.5.1(vue@3.5.18):
     resolution: {integrity: sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==}
     peerDependencies:
@@ -5822,7 +5841,6 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     dependencies:
       lib0: 0.2.114
-    dev: false
 
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -5832,4 +5850,20 @@ packages:
   /yoctocolors@2.1.1:
     resolution: {integrity: sha512-GQHQqAopRhwU8Kt1DDM8NjibDXHC8eoh1erhGAJPEyveY9qqVeXvVikNKrDz69sHowPMorbPUrH/mx8c50eiBQ==}
     engines: {node: '>=18'}
+    dev: true
+
+  github.com/twitwi/pinia-plugin-yjs/6a094fe765513e862e82726956d7e368f0f25946(pinia@3.0.3)(vue@3.5.18)(yjs@13.6.27):
+    resolution: {tarball: https://codeload.github.com/twitwi/pinia-plugin-yjs/tar.gz/6a094fe765513e862e82726956d7e368f0f25946}
+    id: github.com/twitwi/pinia-plugin-yjs/6a094fe765513e862e82726956d7e368f0f25946
+    name: pinia-plugin-yjs
+    version: 0.0.4
+    requiresBuild: true
+    peerDependencies:
+      pinia: ^3.0.0
+      vue: ^3.0.0
+      yjs: ^13.0.0
+    dependencies:
+      pinia: 3.0.3(typescript@5.8.3)(vue@3.5.18)
+      vue: 3.5.18(typescript@5.8.3)
+      yjs: 13.6.27
     dev: true
