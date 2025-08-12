@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MDRender from '@/components/MDRender.vue'
-import { useMainStore } from '@/stores/stores'
+import { useMainStore } from '@/stores/persist'
 import { Outcomes, type Outcome, type CardId, type Card } from '@/typing'
 import { NButton, NSpace } from 'naive-ui'
 import { computed, ref } from 'vue'

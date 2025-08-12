@@ -2,7 +2,7 @@
 import { ref, onMounted, watch } from 'vue'
 import markdownit from 'markdown-it'
 import { getPersistentObjectURL } from '@/utils';
-import { useMainStore } from '@/stores/stores';
+import { useMainStore } from '@/stores/persist';
 
 const main = useMainStore()
 

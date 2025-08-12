@@ -3,7 +3,7 @@ import { NButton, NCard, NInput, NInputNumber, NSelect } from 'naive-ui'
 import { reactive, ref } from 'vue'
 import VuePictureCropper, { cropper } from 'vue-picture-cropper'
 
-import { useLocalStore, useMainStore } from '@/stores/stores'
+import { useLocalStore, useMainStore } from '@/stores/persist'
 import { copyContent, newBinaryId } from '@/utils'
 import { computedAsync } from '@vueuse/core'
 

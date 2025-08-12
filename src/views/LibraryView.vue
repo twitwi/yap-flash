@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CardEditor from '@/components/CardEditor.vue'
 import TagTag from '@/components/TagTag.vue'
-import { useLocalStore, useMainStore } from '@/stores/stores'
+import { useLocalStore, useMainStore } from '@/stores/persist'
 import type { CardId, CardType } from '@/typing'
 import { copyContent, getPersistentObjectURL, newCardId, promptAddTag, removeTag, simpleFourColorBBlob, sorted } from '@/utils'
 import { NButton } from 'naive-ui'

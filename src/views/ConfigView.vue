@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import EditLocalStorageConfig from '@/components/EditLocalStorageConfig.vue';
-import { yjs } from '@/main';
+import EditLocalStorageConfig from '@/components/EditLocalStorageConfig.vue'
+import { yjs } from '@/main'
 
-import { useMainStore } from '@/stores/stores'; // to ensure preloading for other tabs...
+import { useMainStore } from '@/stores/persist' // to ensure preloading for other tabs...
 useMainStore()
 
 function promptReloadPage() {
