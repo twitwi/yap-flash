@@ -17,6 +17,7 @@ const theme = getTheme(color)
           <NButtonGroup class="header">
             <NButton v-bind="bindRouterLink('home')">Home</NButton>
             <NButton v-bind="bindRouterLink('library')">Library</NButton>
+            <NButton v-bind="bindRouterLink('import-image')" style="flex: 0">+🖼️</NButton>
             <NButton v-bind="bindRouterLink('config')" style="flex: 0">cfg</NButton>
           </NButtonGroup>
         </nav>

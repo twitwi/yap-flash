@@ -112,7 +112,7 @@ function doAdd() {
       <NCard v-if="result.dataURL" title="Add to library">
         <NButton type="primary" @click="doAdd()">Add</NButton>
         <br/>
-        <code v-if="result.binaryId" @click="ev => copyContent(ev.target as HTMLElement)">img://{{ result.binaryId }}</code>
+        <code v-if="result.binaryId" @click="(ev: any) => copyContent(ev.target as HTMLElement)">img://{{ result.binaryId }}</code>
       </NCard>
     </div>
 

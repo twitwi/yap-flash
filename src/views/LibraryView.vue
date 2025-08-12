@@ -80,9 +80,9 @@ function promptDeleteBinary(bId: string) {
   </div>
   <div class="binaries">
     <div v-for="b in main.binaries" :key="b.id">
-      <code @click="ev => copyContent(ev.target as HTMLElement)">img://{{ b.id }}</code>
+      <code @click="(ev:any) => copyContent(ev.target as HTMLElement)">img://{{ b.id }}</code>
       <span> </span>
-      <img :src="getPersistentObjectURL(b)" @click="ev => copyContent((ev.target as HTMLElement)!.parentElement!.querySelector('code'))" />
+      <img :src="getPersistentObjectURL(b)" @click="(ev:any) => copyContent((ev.target as HTMLElement)!.parentElement!.querySelector('code'))" />
       <NButton type="error" @click="promptDeleteBinary(b.id)">Delete</NButton>
     </div>
   </div>
