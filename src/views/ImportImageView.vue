@@ -4,7 +4,7 @@ import { reactive, ref } from 'vue'
 import VuePictureCropper, { cropper } from 'vue-picture-cropper'
 
 import { useLocalStore, useMainStore } from '@/stores/simple'
-import { bytesToBase64, copyContent, newBinaryId } from '@/utils'
+import { copyContent, newBinaryId } from '@/utils'
 import { computedAsync } from '@vueuse/core'
 
 const main = useMainStore()
@@ -92,7 +92,7 @@ function doAdd() {
 
     <div style="display: flex; align-items: center;">
       <NCard :title="'Image Import'">
-        <NInput placeholder="... paste here or click below" :value="''"/><br/>
+        <NInput placeholder="... paste here or click below" :value="''" autofocus/><br/>
         <NButton @click="pasteImage">from clipboard</NButton>
       </NCard>
       <NCard v-if="showCropper" title="Select below then">
