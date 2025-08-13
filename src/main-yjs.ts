@@ -69,7 +69,7 @@ export function getOrAskConfig(LOCAL_STORAGE_KEY = APP_LOCAL_STORAGE_KEY, saveTo
   return config as [string, string, string]
 }
 
-export function setupYjs(piniaUse: Pinia, { websocket = true, indexeddb = true, pinia = true } = {}) {
+export async function setupYjs(piniaUse: Pinia, { websocket = true, indexeddb = true, pinia = true } = {}) {
   const ydoc = new Y.Doc()
   const [server, docname, token] = getOrAskConfig()
   const idbkey = `yjs-${docname}` // idb key, can be different
@@ -77,9 +77,12 @@ export function setupYjs(piniaUse: Pinia, { websocket = true, indexeddb = true, 
   if (websocket) {
     ws = new WebsocketProvider(server.includes('://') ? server : `wss://${server}`, `${docname}?t=${token}`, ydoc)
   }
-  let idb = undefined
+  let idb = undefined as undefined | IndexeddbPersistence
   if (indexeddb) {
     idb = new IndexeddbPersistence(idbkey, ydoc)
+    await new Promise((resolve) => {
+      idb!.on('synced', resolve)
+    })
   }
   if (pinia) {
     piniaUse.use(createPiniaYJSPlugin({ doc: ydoc }))
