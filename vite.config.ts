@@ -10,6 +10,9 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   return {
+    build: {
+      target: 'es2022'
+    },
     plugins: [
       vue(),
       vueJsx(),
